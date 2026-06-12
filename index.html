@@ -50,24 +50,24 @@
     <div class="widget">
       <section class="hero">
         <div class="eyebrow">Widget Mundial 2026</div>
-        <h1 class="match-title" id="matchTitle">Canadá vs Bosnia y Herzegovina</h1>
-        <div class="meta" id="metaLine"><span>Grupo B</span><span>Viernes 12 de junio de 2026</span><span>3:00 p. m. ET</span><span>Toronto</span></div>
+        <h1 class="match-title" id="matchTitle">Estados Unidos vs Paraguay</h1>
+        <div class="meta" id="metaLine"><span>Grupo D</span><span>Viernes 12 de junio de 2026</span><span>9:00 p. m. ET</span><span>Los Ángeles</span></div>
         <div class="scoreline">
-          <div class="team-box"><div class="label">Local</div><div class="team-name" id="homeTeam">Canadá</div><div class="sub" id="homeSub">Grupo B · Toronto</div></div>
+          <div class="team-box"><div class="label">Local</div><div class="team-name" id="homeTeam">Estados Unidos</div><div class="sub" id="homeSub">Grupo D · Los Ángeles</div></div>
           <div class="score-box"><div class="label">Marcador</div><div class="score" id="scoreBox">0 - 0</div><div class="status" id="statusBox"><span class="dot"></span><span>En juego</span></div></div>
-          <div class="team-box"><div class="label">Visitante</div><div class="team-name" id="awayTeam">Bosnia y Herzegovina</div><div class="sub" id="awaySub">Grupo B · Toronto</div></div>
+          <div class="team-box"><div class="label">Visitante</div><div class="team-name" id="awayTeam">Paraguay</div><div class="sub" id="awaySub">Grupo D · Los Ángeles</div></div>
         </div>
       </section>
 
       <section class="grid">
         <div class="stack">
           <section class="panel">
-            <div class="panel-head"><h2>Resumen del juego</h2><small id="summaryStamp">Solo datos activos</small></div>
+            <div class="panel-head"><h2>Resumen del juego</h2><small id="summaryStamp">Cobertura actual</small></div>
             <div class="cards" id="summaryList"></div>
           </section>
 
           <section class="panel">
-            <div class="panel-head"><h2>Cobertura en directo</h2><small id="liveStamp">Eventos en vivo</small></div>
+            <div class="panel-head"><h2>Cobertura en directo</h2><small id="liveStamp">Actualización automática</small></div>
             <div class="cards" id="liveList"></div>
           </section>
 
@@ -79,7 +79,7 @@
 
         <div class="stack">
           <section class="panel">
-            <div class="panel-head"><h2>Clasificación</h2><small id="groupLabel">Grupo B</small></div>
+            <div class="panel-head"><h2>Clasificación</h2><small id="groupLabel">Grupo D</small></div>
             <div id="tableWrap"></div>
           </section>
 
@@ -96,25 +96,36 @@
 
   <script>
     const params=new URLSearchParams(location.search);
-    const matchUrl=params.get('match')||'https://www.fifa.com/es/match-centre/match/17/285023/289273/400021449';
+    const matchUrl=params.get('match')||'https://www.fifa.com/es/match-centre/match/17/285023/289273/400021458';
     if((params.get('view')||'').toLowerCase()==='cms')document.body.classList.add('cms');
     document.getElementById('sourceLink').href=matchUrl;
 
-    const defaults={
-      title:'Canadá vs Bosnia y Herzegovina',home:'Canadá',away:'Bosnia y Herzegovina',group:'Grupo B',city:'Toronto',dateLine:'Viernes 12 de junio de 2026',timeLine:'3:00 p. m. ET',
-      summary:[
-        {title:'Estado del partido',text:'En juego.'},
-        {title:'Marcador en vivo',text:'Canadá 0 - 0 Bosnia y Herzegovina.'}
-      ],
-      live:[
-        {minute:"13'",title:'Estado en vivo',text:'Marcador actual: Canadá 0 - 0 Bosnia y Herzegovina.'}
-      ],
-      players:[
-        {title:'Canadá',text:'Jonathan David — Delantero; Stephen Eustáquio — Mediocampista; Alphonso Davies — Defensor/Lateral.'},
-        {title:'Bosnia y Herzegovina',text:'Ivan Basic — Mediocampista; Sead Kolašinac — Defensor; Edin Džeko — Delantero.'}
-      ],
-      standings:[['Canadá',0,0,0,0,0],['Bosnia y Herzegovina',0,0,0,0,0],['Catar',0,0,0,0,0],['Suiza',0,0,0,0,0]]
+    const matchConfigs={
+      '400021458':{
+        title:'Estados Unidos vs Paraguay',
+        home:'Estados Unidos',
+        away:'Paraguay',
+        group:'Grupo D',
+        dateLine:'Viernes 12 de junio de 2026',
+        timeLine:'9:00 p. m. ET',
+        city:'Los Ángeles',
+        summary:[
+          {title:'Estado del partido',text:'Cobertura del debut de Estados Unidos frente a Paraguay.'},
+          {title:'Marcador en vivo',text:'Estados Unidos 0 - 0 Paraguay.'}
+        ],
+        live:[
+          {minute:'PRE',title:'Seguimiento en vivo',text:'Cobertura en directo desde Los Ángeles.'}
+        ],
+        players:[
+          {title:'Estados Unidos',text:'Christian Pulisic — Extremo; Weston McKennie — Mediocampista; Tim Weah — Atacante.'},
+          {title:'Paraguay',text:'Miguel Almirón — Extremo; Julio Enciso — Atacante; Gustavo Gómez — Defensor.'}
+        ],
+        standings:[['Estados Unidos',0,0,0,0,0],['Paraguay',0,0,0,0,0],['Turquía',0,0,0,0,0],['Irlanda',0,0,0,0,0]]
+      }
     };
+
+    const matchId=((matchUrl.match(/\/(\d+)(?:\?|$)/g)||[]).map(x=>x.replace(/\D/g,''))).pop()||'400021458';
+    const defaults=matchConfigs[matchId]||matchConfigs['400021458'];
 
     function renderCards(target,items){
       document.getElementById(target).innerHTML=items.map(i=>`<article class="card"><strong>${i.title}</strong><p>${i.text}</p></article>`).join('');
@@ -138,8 +149,7 @@
     renderCards('playersList',defaults.players);
     renderTable(defaults.standings);
 
-    const matchId=((matchUrl.match(/\/(\d+)(?:\?|$)/g)||[]).map(x=>x.replace(/\D/g,''))).pop()||'';
-    const espnMap={'400021449':'760416'};
+    const espnMap={'400021458':'760417'};
     const espnGameId=espnMap[matchId]||'';
 
     async function fetchEspn(){
@@ -171,8 +181,8 @@
         {title:'Marcador en vivo',text:`${defaults.home} ${hs} - ${as} ${defaults.away}.`}
       ]);
       renderLive([{minute:(type.shortDetail||detail||'LIVE'),title:'Estado en vivo',text:`Marcador actual: ${defaults.home} ${hs} - ${as} ${defaults.away}.`}]);
-      summaryStamp.textContent='Solo datos activos';
-      liveStamp.textContent='Datos en vivo';
+      summaryStamp.textContent='Cobertura actual';
+      liveStamp.textContent='Actualización automática';
     }
 
     async function refresh(){
