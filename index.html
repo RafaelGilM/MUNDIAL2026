@@ -5,72 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Widget Mundial 2026</title>
 <style>
-:root{--bg:#06111f;--panel:#0b1a31;--panel2:#0d2140;--line:#1a3657;--text:#f4f8fc;--muted:#a9bdd2;--accent:#18b6ff;--ok:#1dd3a6;--warn:#ffd36b;--radius:16px;--shadow:0 10px 28px rgba(0,0,0,.24)}
-*{box-sizing:border-box}html,body{margin:0;padding:0;background:transparent;font-family:Inter,Arial,sans-serif;color:var(--text)}
-body{padding:0}
-.widget{max-width:760px;margin:0 auto;background:radial-gradient(circle at top left, rgba(24,182,255,.09), transparent 34%),linear-gradient(180deg,#07111f,#091829 76%,#0b1c35);border:1px solid #153150;border-radius:22px;padding:14px;box-shadow:var(--shadow)}
-.top{display:grid;grid-template-columns:1fr 210px 1fr;gap:12px;align-items:stretch}.team,.promo,.block{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:16px}.team{padding:12px;display:flex;flex-direction:column;justify-content:center}.team.right{text-align:right}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}.name{font-size:22px;font-weight:800;line-height:1.06;margin-top:6px}.meta{margin-top:10px;color:var(--muted);font-size:12px;display:flex;gap:8px;flex-wrap:wrap}.right .meta{justify-content:flex-end}.scorebox{text-align:center;padding-top:2px}.score{font-size:30px;font-weight:900;line-height:1.02;letter-spacing:-.03em;word-spacing:-2px}.status{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:8px 12px;border-radius:999px;background:rgba(24,182,255,.12);border:1px solid rgba(24,182,255,.26);color:#d9efff;font-size:11px;text-transform:uppercase;font-weight:800;letter-spacing:.08em}.status.live{background:rgba(29,211,166,.14);border-color:rgba(29,211,166,.28);color:#d4fff4}.status.done{background:rgba(255,211,107,.12);border-color:rgba(255,211,107,.26);color:#ffefbc}.dot{width:8px;height:8px;border-radius:50%;background:currentColor}.kickoff{margin-top:10px;font-size:13px;color:#e1eaf3;line-height:1.35}.grid{display:grid;grid-template-columns:220px 1fr;gap:12px;margin-top:12px}.stack{display:grid;gap:12px}.promo{padding:14px;min-height:110px}.promo strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px}.promo p{margin:0;color:#e5edf5;font-size:13px;line-height:1.45}.block{padding:12px}.blockhead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:10px}.block h3{margin:0;font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#f3f8fc;line-height:1.15}.stamp{font-size:10px;color:var(--muted);text-align:right;line-height:1.2}.summary-item,.news-item,.event{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);border-radius:13px}.summary-item,.news-item{padding:11px}.summary-item strong,.news-item strong{display:block;font-size:13px;line-height:1.3}.summary-item p,.news-item p{margin:6px 0 0;font-size:12px;color:#d7e2ed;line-height:1.45}.summary-item+.summary-item,.news-item+.news-item{margin-top:8px}.timeline{display:grid;gap:8px}.event{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:11px}.min{font-size:17px;font-weight:900;color:var(--accent);line-height:1}.tag{display:inline-block;margin-top:4px;padding:4px 7px;border-radius:999px;background:rgba(24,182,255,.12);color:#d0ebff;font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:800}.event-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#dce8f4}.event-text{margin-top:4px;font-size:13px;line-height:1.42}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{padding:8px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left}.table th{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}.table tr:first-child td{color:#d7fff3}.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}a{color:#dcecff;text-decoration:none}a:hover{text-decoration:underline}.empty,.loading{font-size:13px;color:var(--muted)}.loading{display:flex;align-items:center;gap:8px}.spinner{width:13px;height:13px;border:2px solid rgba(255,255,255,.18);border-top-color:#d8eaff;border-radius:50%;animation:spin .8s linear infinite}.badge{display:inline-flex;align-items:center;gap:8px;padding:5px 9px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.04);font-size:10px;color:#dbe8f4;text-transform:uppercase;letter-spacing:.08em}.embed-box{margin-top:12px;padding:12px;border:1px dashed rgba(255,255,255,.15);border-radius:14px;background:rgba(255,255,255,.02);font-size:11px;color:#cbd8e4;line-height:1.45;word-break:break-word}.embed-box code{display:block;white-space:pre-wrap;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.hide{display:none!important}@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:640px){.widget{max-width:100%;border-radius:18px;padding:12px}.top,.grid{grid-template-columns:1fr}.scorebox{order:-1}.team.right{text-align:left}.right .meta{justify-content:flex-start}.name{font-size:20px}.score{font-size:26px}.embed-box{display:none}}
+:root{--bg:#07111f;--panel:#0b1b33;--line:#173453;--text:#f4f8fc;--muted:#a9bdd2;--accent:#18b6ff;--ok:#20d3a9;--warn:#ffd36b;--shadow:0 8px 22px rgba(0,0,0,.22);--r:14px}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:transparent;color:var(--text);font-family:Inter,Arial,sans-serif}body{overflow-x:hidden}
+.widget{width:100%;max-width:100%;margin:0 auto;background:radial-gradient(circle at top left, rgba(24,182,255,.08), transparent 32%),linear-gradient(180deg,#06111f,#0a1728 74%,#0b1c35);border:1px solid #14304e;border-radius:18px;padding:12px;box-shadow:var(--shadow);container-type:inline-size}
+.header{display:grid;grid-template-columns:1fr;gap:10px}.scorebox,.team,.box{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--r)}.scorebox{padding:12px;text-align:center}.team{padding:12px}.eyebrow{font-size:10px;line-height:1.2;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}.score{margin-top:6px;font-size:clamp(24px,7.2vw,36px);font-weight:900;line-height:1.02;letter-spacing:-.03em;word-break:keep-all}.status{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:7px 11px;border-radius:999px;border:1px solid rgba(24,182,255,.25);background:rgba(24,182,255,.12);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#dff0ff}.status.live{background:rgba(32,211,169,.14);border-color:rgba(32,211,169,.26);color:#d7fff4}.status.done{background:rgba(255,211,107,.12);border-color:rgba(255,211,107,.26);color:#ffefbf}.dot{width:8px;height:8px;border-radius:50%;background:currentColor}.kickoff{margin-top:9px;font-size:13px;line-height:1.35;color:#e5edf5}.name{margin-top:5px;font-size:clamp(18px,5.8vw,28px);line-height:1.06;font-weight:800;text-wrap:balance}.meta{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}.badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:10px;line-height:1.1;text-transform:uppercase;letter-spacing:.08em;color:#dce8f3}
+.layout{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.stack{display:grid;gap:10px}.box{padding:12px}.boxhead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px}.box h3{margin:0;font-size:11px;line-height:1.1;text-transform:uppercase;letter-spacing:.15em}.stamp{font-size:10px;line-height:1.2;text-align:right;color:var(--muted)}.card{padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.025)}.card+.card{margin-top:8px}.card strong{display:block;font-size:13px;line-height:1.3}.card p{margin:5px 0 0;font-size:12px;line-height:1.45;color:#d8e3ee}.timeline{display:grid;gap:8px}.event{display:grid;grid-template-columns:50px 1fr;gap:10px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.025)}.min{font-size:16px;line-height:1;font-weight:900;color:var(--accent)}.tag{display:inline-block;margin-top:4px;padding:4px 7px;border-radius:999px;background:rgba(24,182,255,.12);font-size:9px;line-height:1;text-transform:uppercase;letter-spacing:.1em;color:#d7edff;font-weight:800}.event-title{font-size:12px;line-height:1.2;text-transform:uppercase;letter-spacing:.08em;color:#dce8f4}.event-text{margin-top:4px;font-size:13px;line-height:1.42}.table-wrap{overflow:auto;-webkit-overflow-scrolling:touch}.table{width:100%;border-collapse:collapse;font-size:12px;min-width:420px}.table th,.table td{padding:8px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left;white-space:nowrap}.table th{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:11px;line-height:1.4;color:var(--muted)}a{color:#e4f1ff;text-decoration:none}a:hover{text-decoration:underline}.loading,.empty{font-size:13px;color:var(--muted)}.loading{display:flex;align-items:center;gap:8px}.spinner{width:13px;height:13px;border:2px solid rgba(255,255,255,.18);border-top-color:#d8eaff;border-radius:50%;animation:spin .8s linear infinite}.embed-help{display:none}@keyframes spin{to{transform:rotate(360deg)}}
+@container (min-width: 620px){.header{grid-template-columns:1fr 180px 1fr;align-items:stretch}.layout{grid-template-columns:230px 1fr}.team.right{text-align:right}.team.right .meta{justify-content:flex-end}}
+@media (max-width:420px){.widget{padding:10px;border-radius:16px}.scorebox,.team,.box{padding:10px}.boxhead{gap:6px}.event{grid-template-columns:44px 1fr}.kickoff,.meta,.event-text,.card p{font-size:12px}.score{font-size:24px}.name{font-size:18px}}
 </style>
 </head>
 <body>
 <div class="widget" id="widget">
-  <div class="top">
-    <div class="team left">
-      <div class="eyebrow">Local</div>
-      <div class="name" id="homeName">Canadá</div>
-      <div class="meta"><span class="badge" id="groupLabel">Grupo B</span><span id="venueA">Estadio de Toronto</span></div>
-    </div>
+  <section class="header">
     <div class="scorebox">
       <div class="eyebrow">Marcador</div>
       <div class="score"><span id="homeScore">-</span> - <span id="awayScore">-</span></div>
       <div class="status" id="status"><span class="dot"></span><span>Previo</span></div>
       <div class="kickoff" id="kickoff">12 junio 2026, 19:00</div>
     </div>
+    <div class="team">
+      <div class="eyebrow">Local</div>
+      <div class="name" id="homeName">Canadá</div>
+      <div class="meta"><span class="badge" id="groupLabel">Grupo B</span><span id="venueA">Estadio de Toronto</span></div>
+    </div>
     <div class="team right">
       <div class="eyebrow">Visitante</div>
       <div class="name" id="awayName">Bosnia y Herzegovina</div>
       <div class="meta"><span id="cityBadge">Toronto</span></div>
     </div>
-  </div>
+  </section>
 
-  <div class="grid">
+  <section class="layout">
     <div class="stack">
-      <section class="block">
-        <div class="blockhead"><h3>Resumen del juego</h3><div class="stamp" id="summaryStamp">cada 1 minuto</div></div>
+      <div class="box">
+        <div class="boxhead"><h3>Resumen del juego</h3><div class="stamp" id="summaryStamp">cada 1 minuto</div></div>
         <div id="summary"><div class="loading"><span class="spinner"></span><span>Cargando resumen…</span></div></div>
-      </section>
-      <section class="block">
-        <div class="blockhead"><h3>Clasificación</h3><div class="stamp" id="tableStamp">cada 30 minutos</div></div>
+      </div>
+      <div class="box">
+        <div class="boxhead"><h3>Clasificación</h3><div class="stamp" id="tableStamp">cada 30 minutos</div></div>
         <div id="standings"><div class="loading"><span class="spinner"></span><span>Cargando clasificación…</span></div></div>
-      </section>
+      </div>
     </div>
     <div class="stack">
-      <section class="promo">
-        <div>
-          <strong>Widget FIFA configurable</strong>
-          <p>Versión optimizada para CMS e iframe. Carga el partido desde el parámetro <strong>?match=</strong> y reduce el tamaño del display para evitar cortes en móvil.</p>
-        </div>
-      </section>
-      <section class="block">
-        <div class="blockhead"><h3>Cobertura en directo</h3><div class="stamp" id="liveStamp">cada 1 minuto</div></div>
+      <div class="box">
+        <div class="boxhead"><h3>Cobertura en directo</h3><div class="stamp" id="liveStamp">cada 1 minuto</div></div>
         <div class="timeline" id="timeline"><div class="loading"><span class="spinner"></span><span>Cargando cobertura…</span></div></div>
-      </section>
-      <section class="block">
-        <div class="blockhead"><h3>Noticias</h3><div class="stamp" id="newsStamp">cada 60 minutos</div></div>
+      </div>
+      <div class="box">
+        <div class="boxhead"><h3>Noticias</h3><div class="stamp" id="newsStamp">cada 60 minutos</div></div>
         <div id="news"><div class="loading"><span class="spinner"></span><span>Cargando noticias…</span></div></div>
-      </section>
+      </div>
     </div>
-  </div>
+  </section>
 
   <div class="footer">
     <span>Fuente principal: FIFA Match Centre.</span>
     <a id="sourceLink" href="https://www.fifa.com/es/match-centre/match/17/285023/289273/400021449" target="_blank" rel="noopener noreferrer">Ver partido en FIFA</a>
-  </div>
-
-  <div class="embed-box" id="embedBox">
-    Código sugerido para CMS:
-    <code id="embedCode"></code>
   </div>
 </div>
 
@@ -83,133 +73,30 @@ body{padding:0}
   const $=id=>document.getElementById(id);
   const esc=s=>(s||'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
   const clean=s=>(s||'').replace(/\s+/g,' ').trim();
-  const idMatch=(MATCH_URL.match(/(\d{9})/)||[])[1]||'';
-
-  function stamp(id){$(id).textContent='Actualizado '+new Date().toLocaleTimeString('es-DO',{hour:'2-digit',minute:'2-digit'});}
-  async function pull(url){const res=await fetch('https://r.jina.ai/http://'+url.replace(/^https?:\/\//,''),{cache:'no-store'}); return await res.text();}
-  function matchIdFromUrl(url){return (url.match(/(\d{9})/)||[])[1]||'';}
-  function groupFromId(id){const map={'400021443':'Grupo A','400021441':'Grupo A','400021449':'Grupo B'}; return map[id]||'Mundial 2026';}
-
+  const matchId=(MATCH_URL.match(/(\d{9})/)||[])[1]||'';
   const preset={
     '400021449':{home:'Canadá',away:'Bosnia y Herzegovina',venue:'Estadio de Toronto',city:'Toronto',kickoff:'12 junio 2026, 19:00',group:'Grupo B'},
     '400021441':{home:'República de Corea',away:'Chequia',venue:'Estadio Guadalajara',city:'Guadalajara',kickoff:'12 junio 2026, 22:00 ET',group:'Grupo A'},
     '400021443':{home:'México',away:'Sudáfrica',venue:'Estadio Ciudad de México',city:'Ciudad de México',kickoff:'12 junio 2026, 15:00 ET',group:'Grupo A'}
   };
-
-  function parseMeta(html){
-    const id=matchIdFromUrl(MATCH_URL);
-    const base=preset[id]||{home:'Local',away:'Visitante',venue:'Sede por confirmar',city:'Ciudad por confirmar',kickoff:'Hora por confirmar',group:groupFromId(id)};
-    const title=(html.match(/^Title:\s*(.+)$/m)||[])[1]||'';
-    const tv=title.match(/^(.+?)\s+vs\s+(.+?)\s+\|/i);
-    if(tv){base.home=clean(tv[1]); base.away=clean(tv[2]);}
-    const venue=(html.match(/Lugar\.\s*([^\n]+)/i)||[])[1]||(html.match(/Lieu\.\s*([^\n]+)/i)||[])[1]||'';
-    const city=(html.match(/Ciudad\.\s*([^\n]+)/i)||[])[1]||(html.match(/Ville\.\s*([^\n]+)/i)||[])[1]||'';
-    const kickoff=(html.match(/Inicio\.\s*([^\n]+)/i)||[])[1]||(html.match(/Coup d'envoi\.\s*([^\n]+)/i)||[])[1]||'';
-    if(clean(venue)) base.venue=clean(venue);
-    if(clean(city)) base.city=clean(city);
-    if(clean(kickoff)) base.kickoff=clean(kickoff);
-    return base;
-  }
-
-  function parseScore(html){
-    const noScore=/\b(Inicio\.|Kick Off\.|Coup d'envoi\.|The match is starting in|El partido empieza en)\b/i.test(html);
-    if(noScore) return {home:'-',away:'-'};
-    const strongScore=html.match(/(?:Full time|After Full Time|Resultado|Marcador)[:\s\n-]*?(\d)\s*-\s*(\d)/i);
-    if(strongScore) return {home:strongScore[1],away:strongScore[2]};
-    const compact=html.match(/\b([0-9])\s*-\s*([0-9])\b/);
-    if(compact) return {home:compact[1],away:compact[2]};
-    return {home:'-',away:'-'};
-  }
-
-  function parseStatus(html,score){
-    if(/Full time|After Full Time|Final del partido/i.test(html)) return 'done';
-    if(score.home==='-' && score.away==='-') return 'pre';
-    return 'live';
-  }
-
-  function parseTimeline(html,status){
-    if(status==='pre') return [{minute:'PRE',title:'Esperando el inicio',text:'El partido está programado y la cobertura play by play se activará cuando FIFA publique incidencias.'}];
-    const minuteMatches=[...new Set((html.match(/\b(\d{1,2}(?:\+\d{1,2})?)'/g)||[]))].slice(0,10);
-    if(!minuteMatches.length) return [{minute:status==='done'?'FT':'LIVE',title:status==='done'?'Partido finalizado':'Cobertura activa',text:'FIFA no expone una cronología textual completa en esta captura; el widget seguirá consultando cada minuto.'}];
-    return minuteMatches.map(m=>({minute:m.replace("'",''),title:'Actualización',text:'Incidencia detectada en la cronología oficial del partido.'}));
-  }
-
-  function parseSummary(html,meta,status,score){
-    const items=[];
-    if(status==='pre'){
-      items.push({title:'Partido programado',text:`${meta.home} y ${meta.away} juegan hoy en ${meta.venue}.`});
-      items.push({title:'Horario oficial',text:`La ficha de FIFA muestra el arranque para ${meta.kickoff}.`});
-      items.push({title:'Ciudad sede',text:`El partido está pautado en ${meta.city}.`});
-      items.push({title:'Cobertura automática',text:'El widget consultará la ficha oficial cada minuto para reflejar incidencias cuando empiece el encuentro.'});
-      return items;
-    }
-    if(status==='done') items.push({title:'Resultado final',text:`El partido terminó ${score.home}-${score.away}.`});
-    else items.push({title:'Marcador parcial',text:`El encuentro aparece ${score.home}-${score.away} en la fuente consultada.`});
-    items.push({title:'Fuente oficial',text:'La información se resume desde la ficha pública del FIFA Match Centre.'});
-    return items;
-  }
-
-  function parseNews(meta){
-    return [
-      {title:`Previa de ${meta.home} vs ${meta.away}`,url:MATCH_URL},
-      {title:`Datos del partido en ${meta.city}`,url:MATCH_URL}
-    ];
-  }
-
-  function parseStandings(html){
-    const rows=[];
-    const patterns=[
-      /(\d)\s+([A-Za-zÁÉÍÓÚÜÑáéíóúüñ\-\s]+?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+([\-\d]+)\s+(\d+)/g
-    ];
-    for(const rx of patterns){
-      let m; while((m=rx.exec(html))){
-        const team=clean(m[2]);
-        if(team.length>2 && team.length<40) rows.push({pos:m[1],team,p:m[3],w:m[4],d:m[5],l:m[6],gf:m[7],ga:m[8],gd:m[9],pts:m[10]});
-      }
-      if(rows.length) break;
-    }
-    return rows.slice(0,8);
-  }
-
-  function renderSummary(items){$('summary').innerHTML=items.map(i=>'<article class="summary-item"><strong>'+esc(i.title)+'</strong><p>'+esc(i.text)+'</p></article>').join('');}
+  function stamp(id){$(id).textContent='Actualizado '+new Date().toLocaleTimeString('es-DO',{hour:'2-digit',minute:'2-digit'});}
+  async function pull(url){const res=await fetch('https://r.jina.ai/http://'+url.replace(/^https?:\/\//,''),{cache:'no-store'});return await res.text();}
+  function parseMeta(html){const base={...(preset[matchId]||{home:'Local',away:'Visitante',venue:'Sede por confirmar',city:'Ciudad por confirmar',kickoff:'Hora por confirmar',group:'Mundial 2026'})}; const title=(html.match(/^Title:\s*(.+)$/m)||[])[1]||''; const tv=title.match(/^(.+?)\s+vs\s+(.+?)\s+\|/i); if(tv){base.home=clean(tv[1]); base.away=clean(tv[2]);} const venue=(html.match(/Lugar\.\s*([^\n]+)/i)||[])[1]||''; const city=(html.match(/Ciudad\.\s*([^\n]+)/i)||[])[1]||''; const kickoff=(html.match(/Inicio\.\s*([^\n]+)/i)||[])[1]||''; if(clean(venue)) base.venue=clean(venue); if(clean(city)) base.city=clean(city); if(clean(kickoff)) base.kickoff=clean(kickoff); return base; }
+  function parseScore(html){if(/\b(Inicio\.|Kick Off\.|The match is starting in|El partido empieza en)\b/i.test(html)) return {home:'-',away:'-'}; const m=html.match(/(?:Full time|After Full Time|Resultado|Marcador)[:\s\n-]*?(\d)\s*-\s*(\d)/i)||html.match(/\b([0-9])\s*-\s*([0-9])\b/); return m?{home:m[1],away:m[2]}:{home:'-',away:'-'};}
+  function parseStatus(html,score){if(/Full time|After Full Time|Final del partido/i.test(html)) return 'done'; if(score.home==='-'&&score.away==='-') return 'pre'; return 'live';}
+  function parseSummary(html,meta,status,score){if(status==='pre') return [{title:'Partido programado',text:`${meta.home} y ${meta.away} juegan hoy en ${meta.venue}.`},{title:'Horario oficial',text:`La ficha de FIFA muestra el arranque para ${meta.kickoff}.`},{title:'Ciudad sede',text:`El partido está pautado en ${meta.city}.`}]; return [{title:status==='done'?'Resultado final':'Marcador parcial',text:`${meta.home} ${score.home} - ${score.away} ${meta.away}.`},{title:'Fuente oficial',text:'La información se resume desde la ficha pública del FIFA Match Centre.'}];}
+  function parseTimeline(html,status){if(status==='pre') return [{minute:'PRE',title:'Esperando el inicio',text:'La cobertura play by play se activará cuando FIFA publique incidencias del partido.'}]; const minuteMatches=[...new Set((html.match(/\b(\d{1,2}(?:\+\d{1,2})?)'/g)||[]))].slice(0,8); if(!minuteMatches.length) return [{minute:status==='done'?'FT':'LIVE',title:status==='done'?'Partido finalizado':'Cobertura activa',text:'FIFA no expone una cronología textual completa en esta captura; el widget seguirá consultando cada minuto.'}]; return minuteMatches.map(m=>({minute:m.replace("'",''),title:'Actualización',text:'Incidencia detectada en la cronología oficial del partido.'}));}
+  function parseNews(meta){return [{title:`Previa de ${meta.home} vs ${meta.away}`,url:MATCH_URL},{title:`Ficha oficial del partido en ${meta.city}`,url:MATCH_URL}];}
+  function parseStandings(html){const rows=[]; const rx=/(\d)\s+([A-Za-zÁÉÍÓÚÜÑáéíóúüñ\-\s]+?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+([\-\d]+)\s+(\d+)/g; let m; while((m=rx.exec(html))){const team=clean(m[2]); if(team.length>2&&team.length<40) rows.push({pos:m[1],team,p:m[3],w:m[4],d:m[5],l:m[6],gf:m[7],ga:m[8],gd:m[9],pts:m[10]});} return rows.slice(0,8);} 
+  function renderSummary(items){$('summary').innerHTML=items.map(i=>'<article class="card"><strong>'+esc(i.title)+'</strong><p>'+esc(i.text)+'</p></article>').join('');}
   function renderTimeline(items){$('timeline').innerHTML=items.map(i=>'<article class="event"><div><div class="min">'+esc(i.minute)+'</div><div class="tag">play</div></div><div><div class="event-title">'+esc(i.title)+'</div><div class="event-text">'+esc(i.text)+'</div></div></article>').join('');}
-  function renderNews(items){$('news').innerHTML=items.map(i=>'<article class="news-item"><strong><a href="'+i.url+'" target="_blank" rel="noopener noreferrer">'+esc(i.title)+'</a></strong><p>Enlace directo a la ficha oficial del partido.</p></article>').join('');}
+  function renderNews(items){$('news').innerHTML=items.map(i=>'<article class="card"><strong><a href="'+i.url+'" target="_blank" rel="noopener noreferrer">'+esc(i.title)+'</a></strong><p>Enlace directo a la ficha oficial del partido.</p></article>').join('');}
   function renderStandings(rows){if(!rows.length){$('standings').innerHTML='<div class="empty">Clasificación no disponible en este momento.</div>';return;} $('standings').innerHTML='<div class="table-wrap"><table class="table"><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th></tr></thead><tbody>'+rows.map(r=>'<tr><td>'+r.pos+'</td><td>'+esc(r.team)+'</td><td>'+r.p+'</td><td>'+r.w+'</td><td>'+r.d+'</td><td>'+r.l+'</td><td>'+r.gf+'</td><td>'+r.ga+'</td><td>'+r.gd+'</td><td><strong>'+r.pts+'</strong></td></tr>').join('')+'</tbody></table></div>';}
   function setStatus(status){const el=$('status'); if(status==='pre'){el.className='status';el.innerHTML='<span class="dot"></span><span>Previo</span>';} else if(status==='done'){el.className='status done';el.innerHTML='<span class="dot"></span><span>Finalizado</span>';} else {el.className='status live';el.innerHTML='<span class="dot"></span><span>En juego</span>';}}
-  function applyMeta(meta,score,status){$('homeName').textContent=meta.home;$('awayName').textContent=meta.away;$('venueA').textContent=meta.venue;$('cityBadge').textContent=meta.city;$('kickoff').textContent=meta.kickoff;$('groupLabel').textContent=meta.group;$('homeScore').textContent=score.home;$('awayScore').textContent=score.away;$('sourceLink').href=MATCH_URL;setStatus(status);}
-  function updateEmbed(){const base=window.location.origin+window.location.pathname; $('embedCode').textContent='<iframe src="'+base+'?match='+MATCH_URL+'" width="100%" height="980" style="border:0;overflow:hidden" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';}
-
-  async function updateMatch(){
-    try{
-      const html=await pull(MATCH_URL);
-      const meta=parseMeta(html);
-      const score=parseScore(html);
-      const status=parseStatus(html,score);
-      applyMeta(meta,score,status);
-      renderSummary(parseSummary(html,meta,status,score));
-      renderTimeline(parseTimeline(html,status));
-      renderNews(parseNews(meta));
-      stamp('summaryStamp'); stamp('liveStamp'); stamp('newsStamp'); updateEmbed();
-    }catch(e){
-      const meta=preset[idMatch]||parseMeta('');
-      const score={home:'-',away:'-'};
-      applyMeta(meta,score,'pre');
-      renderSummary(parseSummary('',meta,'pre',score));
-      renderTimeline(parseTimeline('','pre'));
-      renderNews(parseNews(meta));
-      updateEmbed();
-      $('summaryStamp').textContent='Sin actualización'; $('liveStamp').textContent='Sin actualización'; $('newsStamp').textContent='Sin actualización';
-    }
-  }
-
-  async function updateStandings(){
-    try{const html=await pull(STANDINGS_URL); renderStandings(parseStandings(html)); stamp('tableStamp');}
-    catch(e){$('standings').innerHTML='<div class="empty">Clasificación no disponible en este momento.</div>';}
-  }
-
-  updateMatch(); updateStandings();
-  setInterval(updateMatch,60000);
-  setInterval(updateStandings,1800000);
+  function applyMeta(meta,score,status){$('homeName').textContent=meta.home; $('awayName').textContent=meta.away; $('venueA').textContent=meta.venue; $('cityBadge').textContent=meta.city; $('kickoff').textContent=meta.kickoff; $('groupLabel').textContent=meta.group; $('homeScore').textContent=score.home; $('awayScore').textContent=score.away; $('sourceLink').href=MATCH_URL; setStatus(status);} 
+  async function updateMatch(){try{const html=await pull(MATCH_URL); const meta=parseMeta(html); const score=parseScore(html); const status=parseStatus(html,score); applyMeta(meta,score,status); renderSummary(parseSummary(html,meta,status,score)); renderTimeline(parseTimeline(html,status)); renderNews(parseNews(meta)); stamp('summaryStamp'); stamp('liveStamp'); stamp('newsStamp');}catch(e){const meta=preset[matchId]||{home:'Local',away:'Visitante',venue:'Sede por confirmar',city:'Ciudad por confirmar',kickoff:'Hora por confirmar',group:'Mundial 2026'}; const score={home:'-',away:'-'}; applyMeta(meta,score,'pre'); renderSummary(parseSummary('',meta,'pre',score)); renderTimeline(parseTimeline('','pre')); renderNews(parseNews(meta)); $('summaryStamp').textContent='Sin actualización'; $('liveStamp').textContent='Sin actualización'; $('newsStamp').textContent='Sin actualización';}}
+  async function updateStandings(){try{const html=await pull(STANDINGS_URL); renderStandings(parseStandings(html)); stamp('tableStamp');}catch(e){$('standings').innerHTML='<div class="empty">Clasificación no disponible en este momento.</div>';}}
+  updateMatch(); updateStandings(); setInterval(updateMatch,60000); setInterval(updateStandings,1800000);
 })();
 </script>
 </body>
