@@ -162,6 +162,18 @@
       return JSON.parse(txt.slice(jsonStart));
     }
 
+
+    const meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+    function formatFechaES(dateStr){
+      const d=new Date(dateStr);
+      if(Number.isNaN(d.getTime())) return dateStr;
+      let hours=d.getHours();
+      const minutes=String(d.getMinutes()).padStart(2,'0');
+      const ampm=hours>=12?'p. m.':'a. m.';
+      hours=hours%12||12;
+      return `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]} a las ${hours}:${minutes} ${ampm} ET`;
+    }
     function parseEspn(data){
       const header=data.header||{};
       const comp=(header.competitions&&header.competitions[0])||{};
@@ -172,15 +184,16 @@
       const away=comps.find(c=>c.homeAway==='away')||comps[1]||{};
       const hs=home.score ?? '0';
       const as=away.score ?? '0';
-      const detail=type.detail || type.shortDetail || 'En juego';
-      const isLive=(type.state==='in'&&!type.completed) || /\d+'/.test(detail);
+      const rawDetail=type.detail || type.shortDetail || 'En juego';
+      const detail=(comp.date?formatFechaES(comp.date):rawDetail);
+      const isLive=(type.state==='in'&&!type.completed) || /\d+'/.test(rawDetail);
       scoreBox.textContent=`${hs} - ${as}`;
-      statusBox.innerHTML=`${isLive?'<span class="dot"></span>':''}<span>${detail}</span>`;
+      statusBox.innerHTML=`${isLive?'<span class="dot"></span>':''}<span>${type.completed?'Finalizado':(isLive?rawDetail:detail)}</span>`;
       renderCards('summaryList',[
-        {title:'Estado del partido',text:`${type.completed?'Final':(isLive?'En juego':'Actualizado')}. Detalle reportado: ${detail}.`},
+        {title:'Estado del partido',text:`${type.completed?'Finalizado':(isLive?'En juego':'Actualizado')}. Detalle reportado: ${type.completed?'Finalizado':(isLive?rawDetail:detail)}.`},
         {title:'Marcador en vivo',text:`${defaults.home} ${hs} - ${as} ${defaults.away}.`}
       ]);
-      renderLive([{minute:(type.shortDetail||detail||'LIVE'),title:'Estado en vivo',text:`Marcador actual: ${defaults.home} ${hs} - ${as} ${defaults.away}.`}]);
+      renderLive([{minute:(isLive?(type.shortDetail||rawDetail||'EN VIVO'):'PREVIO'),title:'Estado en vivo',text:`Marcador actual: ${defaults.home} ${hs} - ${as} ${defaults.away}.`}]);
       summaryStamp.textContent='Cobertura actual';
       liveStamp.textContent='Actualización automática';
     }
