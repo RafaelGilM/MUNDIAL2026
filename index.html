@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Widget Mundial 2026</title>
   <style>
-    :root{--bg:#020817;--panel:#041226;--panel-soft:#071a31;--border:#18304f;--text:#ecf2f8;--muted:#9fb3c8;--accent:#ef4444;--ok:#22c55e;--radius:14px}
+    :root{--bg:#020817;--panel:#041226;--panel-soft:#071a31;--border:#18304f;--text:#ecf2f8;--muted:#9fb3c8;--accent:#ef4444;--radius:14px}
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#04101f,#01060d 70%);color:var(--text);padding:12px}
     .wrap{max-width:980px;margin:0 auto}.widget{background:linear-gradient(180deg,#03111f,#04101a);border:1px solid #0e2238;border-radius:18px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
@@ -53,22 +53,21 @@ const sourceLink = document.getElementById('sourceLink');
 if(matchUrl) sourceLink.href = matchUrl;
 
 const matchConfigs = {
-  '400021458': { score:'4 - 1',
-status:'Finalizado',
-summary:[
-  {title:'Estado del partido', text:'Estados Unidos cerró su debut con una victoria 4-1 sobre Paraguay en el Grupo D.'},
-  {title:'Marcador final', text:'Estados Unidos 4 - 1 Paraguay.'}
-],
-live:[
-  {minute:'FT', title:'Final del partido', text:'Estados Unidos derrotó 4-1 a Paraguay y sumó sus primeros tres puntos del torneo.'}
-],
-footer:'Resultado final: Estados Unidos 4 - 1 Paraguay'
-  standings:[
-  ['Estados Unidos',1,1,0,0,3],
-  ['Turquía',0,0,0,0,0],
-  ['Irlanda',0,0,0,0,0],
-  ['Paraguay',1,0,0,1,0]
-]
+  '400021458': {
+    title:'Estados Unidos vs Paraguay', home:'Estados Unidos', away:'Paraguay', group:'Grupo D',
+    dateLine:'Viernes 12 de junio de 2026', timeLine:'9:00 p. m. ET', city:'Los Ángeles',
+    summary:[
+      {title:'Estado del partido', text:'Estados Unidos cerró su debut con una victoria 4-1 sobre Paraguay en el Grupo D.'},
+      {title:'Marcador final', text:'Estados Unidos 4 - 1 Paraguay.'}
+    ],
+    live:[{minute:'FT', title:'Final del partido', text:'Estados Unidos derrotó 4-1 a Paraguay y sumó sus primeros tres puntos del torneo.'}],
+    players:[
+      {title:'Estados Unidos', text:'Christian Pulisic — Extremo; Folarin Balogun — Delantero; Giovanni Reyna — Mediocampista ofensivo.'},
+      {title:'Paraguay', text:'Miguel Almirón — Extremo; Julio Enciso — Atacante; Gustavo Gómez — Defensor.'}
+    ],
+    standings:[['Estados Unidos',1,1,0,0,3],['Turquía',0,0,0,0,0],['Irlanda',0,0,0,0,0],['Paraguay',1,0,0,1,0]],
+    score:'4 - 1', status:'Finalizado', footer:'Resultado final: Estados Unidos 4 - 1 Paraguay'
+  },
   '400021447': {
     title:'Catar vs Suiza', home:'Catar', away:'Suiza', group:'Grupo B',
     dateLine:'Sábado 13 de junio de 2026', timeLine:'3:00 p. m. ET', city:'Área de la Bahía de San Francisco',
@@ -86,33 +85,36 @@ footer:'Resultado final: Estados Unidos 4 - 1 Paraguay'
   }
 };
 
-const cfg = matchConfigs[matchId] || matchConfigs['400021447'];
-const els = {
-  matchTitle:document.getElementById('matchTitle'), homeTeam:document.getElementById('homeTeam'), awayTeam:document.getElementById('awayTeam'),
-  homeSub:document.getElementById('homeSub'), awaySub:document.getElementById('awaySub'), metaLine:document.getElementById('metaLine'),
-  scoreBox:document.getElementById('scoreBox'), statusBox:document.getElementById('statusBox'), summaryList:document.getElementById('summaryList'),
-  liveList:document.getElementById('liveList'), playersList:document.getElementById('playersList'), tableWrap:document.getElementById('tableWrap'),
-  groupLabel:document.getElementById('groupLabel'), footerNote:document.getElementById('footerNote')
-};
+const cfg = matchConfigs[matchId];
 
-function renderCards(target, items){ target.innerHTML = items.map(i => `<article class="card"><strong>${i.title}</strong><p>${i.text}</p></article>`).join(''); }
-function renderLive(target, items){ target.innerHTML = items.map(i => `<div class="event"><div class="minute">${i.minute}</div><article class="card"><strong>${i.title}</strong><p>${i.text}</p></article></div>`).join(''); }
-function renderTable(target, rows){ target.innerHTML = `<table><thead><tr><th>Selección</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('')}</tbody></table>`; }
+if(cfg){
+  const els = {
+    matchTitle:document.getElementById('matchTitle'), homeTeam:document.getElementById('homeTeam'), awayTeam:document.getElementById('awayTeam'),
+    homeSub:document.getElementById('homeSub'), awaySub:document.getElementById('awaySub'), metaLine:document.getElementById('metaLine'),
+    scoreBox:document.getElementById('scoreBox'), statusBox:document.getElementById('statusBox'), summaryList:document.getElementById('summaryList'),
+    liveList:document.getElementById('liveList'), playersList:document.getElementById('playersList'), tableWrap:document.getElementById('tableWrap'),
+    groupLabel:document.getElementById('groupLabel'), footerNote:document.getElementById('footerNote')
+  };
 
-els.matchTitle.textContent = cfg.title;
-els.homeTeam.textContent = cfg.home;
-els.awayTeam.textContent = cfg.away;
-els.homeSub.textContent = `${cfg.group} · ${cfg.city}`;
-els.awaySub.textContent = `${cfg.group} · ${cfg.city}`;
-els.metaLine.innerHTML = `<span>${cfg.group}</span><span>${cfg.dateLine}</span><span>${cfg.timeLine}</span><span>${cfg.city}</span>`;
-els.scoreBox.textContent = cfg.score;
-els.statusBox.innerHTML = `<span class="dot"></span><span>${cfg.status}</span>`;
-els.groupLabel.textContent = cfg.group;
-els.footerNote.textContent = cfg.footer;
-renderCards(els.summaryList, cfg.summary);
-renderLive(els.liveList, cfg.live);
-renderCards(els.playersList, cfg.players);
-renderTable(els.tableWrap, cfg.standings);
+  function renderCards(target, items){ target.innerHTML = items.map(i => `<article class="card"><strong>${i.title}</strong><p>${i.text}</p></article>`).join(''); }
+  function renderLive(target, items){ target.innerHTML = items.map(i => `<div class="event"><div class="minute">${i.minute}</div><article class="card"><strong>${i.title}</strong><p>${i.text}</p></article></div>`).join(''); }
+  function renderTable(target, rows){ target.innerHTML = `<table><thead><tr><th>Selección</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('')}</tbody></table>`; }
+
+  els.matchTitle.textContent = cfg.title;
+  els.homeTeam.textContent = cfg.home;
+  els.awayTeam.textContent = cfg.away;
+  els.homeSub.textContent = `${cfg.group} · ${cfg.city}`;
+  els.awaySub.textContent = `${cfg.group} · ${cfg.city}`;
+  els.metaLine.innerHTML = `<span>${cfg.group}</span><span>${cfg.dateLine}</span><span>${cfg.timeLine}</span><span>${cfg.city}</span>`;
+  els.scoreBox.textContent = cfg.score;
+  els.statusBox.innerHTML = `<span class="dot"></span><span>${cfg.status}</span>`;
+  els.groupLabel.textContent = cfg.group;
+  els.footerNote.textContent = cfg.footer;
+  renderCards(els.summaryList, cfg.summary);
+  renderLive(els.liveList, cfg.live);
+  renderCards(els.playersList, cfg.players);
+  renderTable(els.tableWrap, cfg.standings);
+}
 </script>
 </body>
 </html>
