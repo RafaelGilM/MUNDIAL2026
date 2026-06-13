@@ -5,64 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Widget Mundial 2026</title>
   <style>
-    :root{
-      --bg:#020817;
-      --panel:#020617;
-      --panel-soft:#02091f;
-      --border:#1e293b;
-      --text:#e2e8f0;
-      --text-soft:#94a3b8;
-      --accent:#22c55e;
-      --accent-soft:#16a34a;
-      --danger:#f97316;
-      --radius:14px;
-      --space:16px;
-    }
+    :root{--bg:#020817;--panel:#041226;--panel-soft:#071a31;--border:#18304f;--text:#ecf2f8;--muted:#9fb3c8;--accent:#ef4444;--ok:#22c55e;--radius:14px}
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;background:radial-gradient(circle at top,#020617,#000);color:var(--text);padding:16px;}
-    .wrap{max-width:960px;margin:0 auto;}
-    .widget{background:var(--bg);border-radius:18px;padding:18px;border:1px solid #020617;box-shadow:0 18px 40px rgba(15,23,42,.9);}
-    .hero{padding:var(--space);border-radius:var(--radius);background:radial-gradient(circle at top left,#020617,#020617 45%,#020617 60%,#020617);border:1px solid var(--border);margin-bottom:var(--space);}
-    .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px;}
-    .match-title{font-size:24px;font-weight:700;margin-bottom:8px;}
-    .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--text-soft);margin-bottom:16px;}
-    .meta span::after{content:"•";margin:0 6px;color:#475569;}
-    .meta span:last-child::after{content:"";margin:0;}
-    .scoreline{display:grid;grid-template-columns:1.2fr .9fr 1.2fr;gap:12px;align-items:stretch;}
-    .panel-box{background:rgba(15,23,42,.9);border-radius:var(--radius);padding:12px 14px;border:1px solid var(--border);}
-    .label{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--text-soft);margin-bottom:4px;}
-    .team-name{font-size:18px;font-weight:600;}
-    .sub{font-size:13px;color:var(--text-soft);}
-    .score-box{text-align:center;}
-    .score{font-size:32px;font-weight:700;margin-bottom:6px;}
-    .status{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:999px;background:#020617;border:1px solid #0f172a;}
-    .status .dot{width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 4px rgba(34,197,94,.25);}
-    .grid{display:grid;grid-template-columns:2fr 1.4fr;gap:var(--space);}
-    .stack{display:flex;flex-direction:column;gap:var(--space);}
-    .panel{background:var(--panel);border-radius:var(--radius);padding:16px 18px;border:1px solid var(--border);}
-    .panel-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:8px;}
-    .panel-head h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft);}
-    .panel-head small{font-size:11px;color:var(--text-soft);}
-    .cards{display:flex;flex-direction:column;gap:10px;}
-    .card{padding:10px 12px;border-radius:10px;background:var(--panel-soft);border:1px solid #020617;}
-    .card strong{display:block;font-size:14px;margin-bottom:4px;}
-    .card p{font-size:13px;color:var(--text-soft);}
-    .event{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:flex-start;}
-    .minute{font-size:12px;font-weight:600;color:var(--text-soft);min-width:40px;text-align:center;}
-    table{width:100%;border-collapse:collapse;font-size:12px;}
-    th,td{padding:6px 4px;text-align:left;}
-    th{font-weight:500;color:var(--text-soft);border-bottom:1px solid #1e293b;}
-    td{border-bottom:1px solid #020617;}
-    td:first-child{font-weight:500;}
-    .footer{margin-top:12px;font-size:11px;color:var(--text-soft);display:flex;justify-content:space-between;gap:8px;}
-    .footer a{color:var(--text-soft);text-decoration:none;}
-    .footer a:hover{text-decoration:underline;}
-    @media(max-width:880px){
-      .widget{padding:14px;}
-      .hero{padding:14px;}
-      .scoreline{grid-template-columns:1fr;}
-      .grid{grid-template-columns:1fr;}
-    }
+    body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#04101f,#01060d 70%);color:var(--text);padding:12px}
+    .wrap{max-width:980px;margin:0 auto}.widget{background:linear-gradient(180deg,#03111f,#04101a);border:1px solid #0e2238;border-radius:18px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+    .hero,.panel,.box,.card{background:linear-gradient(180deg,rgba(7,26,49,.92),rgba(4,18,38,.96));border:1px solid var(--border)}
+    .hero{border-radius:16px;padding:14px;margin-bottom:14px}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .title{font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.05;margin-bottom:8px}.meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted);margin-bottom:14px}.meta span::after{content:"•";margin-left:8px}.meta span:last-child::after{content:""}
+    .scoreline{display:grid;grid-template-columns:1.2fr .8fr 1.2fr;gap:12px}.box{border-radius:14px;padding:12px 14px}.label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.team{font-size:18px;font-weight:700}.sub{font-size:12px;color:var(--muted)}.center{text-align:center}.score{font-size:44px;font-weight:800;line-height:1;margin:8px 0}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;font-size:12px;border:1px solid #29476c;background:#071524}.dot{width:8px;height:8px;border-radius:999px;background:var(--accent)}
+    .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:14px}.stack{display:flex;flex-direction:column;gap:14px}.panel{border-radius:14px;padding:14px}.head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.head h2{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--text)}.head small{font-size:11px;color:var(--muted)}
+    .list{display:flex;flex-direction:column;gap:10px}.card{border-radius:12px;padding:10px 12px}.card strong{display:block;font-size:14px;margin-bottom:4px}.card p{font-size:13px;color:var(--muted)}.event{display:grid;grid-template-columns:46px 1fr;gap:10px;align-items:start}.minute{font-size:13px;font-weight:800;color:var(--text);padding-top:10px;text-align:center}
+    table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:7px 4px;text-align:left}th{font-size:11px;letter-spacing:.12em;color:var(--muted);border-bottom:1px solid #17304e}td{border-bottom:1px solid #0a1c31}td:first-child{font-weight:600}.footer{margin-top:12px;display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted)}a{color:inherit}
+    @media(max-width:860px){.scoreline,.grid{grid-template-columns:1fr}.score{font-size:38px}.title{font-size:28px}}
   </style>
 </head>
 <body>
@@ -70,125 +24,94 @@
     <div class="widget">
       <section class="hero">
         <div class="eyebrow">Widget Mundial 2026</div>
-        <h1 class="match-title" id="matchTitle">Partido del Mundial 2026</h1>
-        <div class="meta" id="metaLine">
-          <span>Grupo</span><span>Fecha</span><span>Hora</span><span>Sede</span>
-        </div>
+        <h1 class="title" id="matchTitle">Partido del Mundial 2026</h1>
+        <div class="meta" id="metaLine"><span>Grupo</span><span>Fecha</span><span>Hora</span><span>Sede</span></div>
         <div class="scoreline">
-          <div class="panel-box">
-            <div class="label">Local</div>
-            <div class="team-name" id="homeTeam">Equipo local</div>
-            <div class="sub" id="homeSub">Grupo · Ciudad</div>
-          </div>
-          <div class="panel-box score-box">
-            <div class="label">Marcador</div>
-            <div class="score" id="scoreBox">– : –</div>
-            <div class="status" id="statusBox"><span class="dot"></span><span>Previo al partido</span></div>
-          </div>
-          <div class="panel-box">
-            <div class="label">Visitante</div>
-            <div class="team-name" id="awayTeam">Equipo visitante</div>
-            <div class="sub" id="awaySub">Grupo · Ciudad</div>
-          </div>
+          <div class="box"><div class="label">Local</div><div class="team" id="homeTeam">Equipo local</div><div class="sub" id="homeSub">Grupo · Ciudad</div></div>
+          <div class="box center"><div class="label">Marcador</div><div class="score" id="scoreBox">– : –</div><div class="badge" id="statusBox"><span class="dot"></span><span>En juego</span></div></div>
+          <div class="box"><div class="label">Visitante</div><div class="team" id="awayTeam">Equipo visitante</div><div class="sub" id="awaySub">Grupo · Ciudad</div></div>
         </div>
       </section>
-
       <section class="grid">
         <div class="stack">
-          <section class="panel">
-            <div class="panel-head"><h2>Resumen del juego</h2><small id="summaryStamp">Previa del partido</small></div>
-            <div class="cards" id="summaryList"></div>
-          </section>
-
-          <section class="panel">
-            <div class="panel-head"><h2>Cobertura en directo</h2><small id="liveStamp">En espera</small></div>
-            <div class="cards" id="liveList"></div>
-          </section>
-
-          <section class="panel">
-            <div class="panel-head"><h2>Jugadores clave</h2><small>Alineación destacada</small></div>
-            <div class="cards" id="playersList"></div>
-          </section>
+          <section class="panel"><div class="head"><h2>Resumen del juego</h2><small id="summaryStamp">Último dato visible</small></div><div class="list" id="summaryList"></div></section>
+          <section class="panel"><div class="head"><h2>Cobertura en directo</h2><small id="liveStamp">Sin nuevos eventos</small></div><div class="list" id="liveList"></div></section>
+          <section class="panel"><div class="head"><h2>Jugadores clave</h2><small>Alineación destacada</small></div><div class="list" id="playersList"></div></section>
         </div>
-
         <div class="stack">
-          <section class="panel">
-            <div class="panel-head"><h2>Clasificación</h2><small id="groupLabel">Grupo</small></div>
-            <div id="tableWrap"></div>
-          </section>
+          <section class="panel"><div class="head"><h2>Clasificación</h2><small id="groupLabel">Grupo</small></div><div id="tableWrap"></div></section>
         </div>
       </section>
-
-      <div class="footer">
-        <div id="footerNote">Cobertura del Mundial 2026</div>
-        <div><a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">Abrir partido en FIFA</a></div>
-      </div>
+      <div class="footer"><div id="footerNote">Cobertura del Mundial 2026</div><div><a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">Abrir partido en FIFA</a></div></div>
     </div>
   </div>
+<script>
+const params = new URLSearchParams(location.search);
+const matchUrl = params.get('match') || '';
+const matchId = (matchUrl.match(/(\d+)(?:\/?(?:\?|$))/) || [,'400021447'])[1];
+const sourceLink = document.getElementById('sourceLink');
+if(matchUrl) sourceLink.href = matchUrl;
 
-  <script>
-    const params=new URLSearchParams(location.search);
-    const matchUrl=params.get('match');
-    if((params.get('view')||'').toLowerCase()==='cms')document.body.classList.add('cms');
-    if(matchUrl)document.getElementById('sourceLink').href=matchUrl;
+const matchConfigs = {
+  '400021458': {
+    title:'Estados Unidos vs Paraguay', home:'Estados Unidos', away:'Paraguay', group:'Grupo D',
+    dateLine:'Viernes 12 de junio de 2026', timeLine:'9:00 p. m. ET', city:'Los Ángeles',
+    summary:[
+      {title:'Estado del partido', text:'Cobertura del debut de Estados Unidos frente a Paraguay.'},
+      {title:'Marcador en vivo', text:'Estados Unidos 0 - 0 Paraguay.'}
+    ],
+    live:[{minute:'PRE', title:'Seguimiento en vivo', text:'Cobertura en directo desde Los Ángeles.'}],
+    players:[
+      {title:'Estados Unidos', text:'Christian Pulisic — Extremo; Weston McKennie — Mediocampista; Tim Weah — Atacante.'},
+      {title:'Paraguay', text:'Miguel Almirón — Extremo; Julio Enciso — Atacante; Gustavo Gómez — Defensor.'}
+    ],
+    standings:[['Estados Unidos',0,0,0,0,0],['Paraguay',0,0,0,0,0],['Turquía',0,0,0,0,0],['Irlanda',0,0,0,0,0]],
+    score:'0 - 0', status:'En juego', footer:'Cobertura del partido Estados Unidos vs Paraguay'
+  },
+  '400021447': {
+    title:'Catar vs Suiza', home:'Catar', away:'Suiza', group:'Grupo B',
+    dateLine:'Sábado 13 de junio de 2026', timeLine:'3:00 p. m. ET', city:'Área de la Bahía de San Francisco',
+    summary:[
+      {title:'Estado del partido', text:'Cobertura del debut de Catar y Suiza en el Grupo B.'},
+      {title:'Contexto', text:'Partido del Grupo B del Mundial 2026 en la Bahía de San Francisco.'}
+    ],
+    live:[{minute:'PRE', title:'Seguimiento en vivo', text:'Cobertura en directo desde la Bahía de San Francisco.'}],
+    players:[
+      {title:'Catar', text:'Jugadores clave por definir.'},
+      {title:'Suiza', text:'Jugadores clave por definir.'}
+    ],
+    standings:[['Catar',0,0,0,0,0],['Suiza',0,0,0,0,0],['Serbia',0,0,0,0,0],['Chile',0,0,0,0,0]],
+    score:'– : –', status:'En juego', footer:'Cobertura del partido Catar vs Suiza'
+  }
+};
 
-    // Configuración manual por partido (inicialmente solo Catar vs Suiza)
-    const matchConfigs={
-      '400021447':{
-        title:'Catar vs Suiza',
-        home:'Catar',
-        away:'Suiza',
-        group:'Grupo B',
-        dateLine:'Sábado 13 de junio de 2026',
-        timeLine:'3:00 p. m. ET',
-        city:'Área de la Bahía de San Francisco',
-        summary:[
-          {title:'Estado del partido',text:'Cobertura del debut de Catar y Suiza en el Grupo B.'},
-          {title:'Contexto',text:'Partido del Grupo B del Mundial 2026 en la Bahía de San Francisco.'}
-        ],
-        live:[
-          {minute:'PRE',title:'Seguimiento en vivo',text:'Cobertura en directo desde la Bahía de San Francisco.'}
-        ],
-        players:[
-          {title:'Catar',text:'Jugadores clave por definir.'},
-          {title:'Suiza',text:'Jugadores clave por definir.'}
-        ],
-        standings:[['Catar',0,0,0,0,0],['Suiza',0,0,0,0,0],['Equipo 3',0,0,0,0,0],['Equipo 4',0,0,0,0,0]]
-      }
-    };
+const cfg = matchConfigs[matchId] || matchConfigs['400021447'];
+const els = {
+  matchTitle:document.getElementById('matchTitle'), homeTeam:document.getElementById('homeTeam'), awayTeam:document.getElementById('awayTeam'),
+  homeSub:document.getElementById('homeSub'), awaySub:document.getElementById('awaySub'), metaLine:document.getElementById('metaLine'),
+  scoreBox:document.getElementById('scoreBox'), statusBox:document.getElementById('statusBox'), summaryList:document.getElementById('summaryList'),
+  liveList:document.getElementById('liveList'), playersList:document.getElementById('playersList'), tableWrap:document.getElementById('tableWrap'),
+  groupLabel:document.getElementById('groupLabel'), footerNote:document.getElementById('footerNote')
+};
 
-    const idFromUrl = matchUrl ? (matchUrl.match(/\/(\d+)(?:\?|$)/)||[])[1] : null;
-    const matchId = idFromUrl && matchConfigs[idFromUrl] ? idFromUrl : '400021447';
-    const cfg = matchConfigs[matchId];
+function renderCards(target, items){ target.innerHTML = items.map(i => `<article class="card"><strong>${i.title}</strong><p>${i.text}</p></article>`).join(''); }
+function renderLive(target, items){ target.innerHTML = items.map(i => `<div class="event"><div class="minute">${i.minute}</div><article class="card"><strong>${i.title}</strong><p>${i.text}</p></article></div>`).join(''); }
+function renderTable(target, rows){ target.innerHTML = `<table><thead><tr><th>Selección</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('')}</tbody></table>`; }
 
-    matchTitle.textContent=cfg.title;
-    homeTeam.textContent=cfg.home;
-    awayTeam.textContent=cfg.away;
-    homeSub.textContent=`${cfg.group} · ${cfg.city}`;
-    awaySub.textContent=`${cfg.group} · ${cfg.city}`;
-    metaLine.innerHTML=`<span>${cfg.group}</span><span>${cfg.dateLine}</span><span>${cfg.timeLine}</span><span>${cfg.city}</span>`;
-    groupLabel.textContent=cfg.group;
-
-    function renderCards(target,items){
-      document.getElementById(target).innerHTML=items.map(i=>`<article class="card"><strong>${i.title}</strong><p>${i.text}</p></article>`).join('');
-    }
-    function renderLive(items){
-      document.getElementById('liveList').innerHTML=items.map(i=>`<div class="event"><div class="minute">${i.minute}</div><article class="card"><strong>${i.title}</strong><p>${i.text}</p></article></div>`).join('');
-    }
-    function renderTable(rows){
-      tableWrap.innerHTML=`<table><thead><tr><th>Selección</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('')}</tbody></table>`;
-    }
-
-    renderCards('summaryList',cfg.summary);
-    renderLive(cfg.live);
-    renderCards('playersList',cfg.players);
-    renderTable(cfg.standings);
-
-    // Marcador y estado quedan manuales para que no dependan de ninguna API
-    scoreBox.textContent='– : –';
-    statusBox.innerHTML='<span class="dot"></span><span>En juego</span>';
-    summaryStamp.textContent='Previa del partido';
-    liveStamp.textContent='Cobertura en directo';
-  </script>
+els.matchTitle.textContent = cfg.title;
+els.homeTeam.textContent = cfg.home;
+els.awayTeam.textContent = cfg.away;
+els.homeSub.textContent = `${cfg.group} · ${cfg.city}`;
+els.awaySub.textContent = `${cfg.group} · ${cfg.city}`;
+els.metaLine.innerHTML = `<span>${cfg.group}</span><span>${cfg.dateLine}</span><span>${cfg.timeLine}</span><span>${cfg.city}</span>`;
+els.scoreBox.textContent = cfg.score;
+els.statusBox.innerHTML = `<span class="dot"></span><span>${cfg.status}</span>`;
+els.groupLabel.textContent = cfg.group;
+els.footerNote.textContent = cfg.footer;
+renderCards(els.summaryList, cfg.summary);
+renderLive(els.liveList, cfg.live);
+renderCards(els.playersList, cfg.players);
+renderTable(els.tableWrap, cfg.standings);
+</script>
 </body>
 </html>
