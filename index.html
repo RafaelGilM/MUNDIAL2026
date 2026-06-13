@@ -1,48 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Widget Mundial 2026</title>
   <style>
     :root{
-      --bg:#06111d;--panel:#0a1a2b;--panel2:#0d2034;--line:rgba(67,121,179,.28);--line2:rgba(67,121,179,.18);
-      --text:#eef5ff;--muted:#b5c8de;--soft:#84a3c6;--accent:#18b7ff;--live:#ff5d5d;--ok:#7ce6a2;
-      --radius:20px;--shadow:0 12px 30px rgba(0,0,0,.28);--max:1180px;
+      --bg:#020817;
+      --panel:#020617;
+      --panel-soft:#02091f;
+      --border:#1e293b;
+      --text:#e2e8f0;
+      --text-soft:#94a3b8;
+      --accent:#22c55e;
+      --accent-soft:#16a34a;
+      --danger:#f97316;
+      --radius:14px;
+      --space:16px;
     }
-    *{box-sizing:border-box}html,body{margin:0;padding:0}body{
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:linear-gradient(180deg,#04101a 0%,#07121e 100%);color:var(--text);padding:16px;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;background:radial-gradient(circle at top,#020617,#000);color:var(--text);padding:16px;}
+    .wrap{max-width:960px;margin:0 auto;}
+    .widget{background:var(--bg);border-radius:18px;padding:18px;border:1px solid #020617;box-shadow:0 18px 40px rgba(15,23,42,.9);}
+    .hero{padding:var(--space);border-radius:var(--radius);background:radial-gradient(circle at top left,#020617,#020617 45%,#020617 60%,#020617);border:1px solid var(--border);margin-bottom:var(--space);}
+    .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px;}
+    .match-title{font-size:24px;font-weight:700;margin-bottom:8px;}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--text-soft);margin-bottom:16px;}
+    .meta span::after{content:"•";margin:0 6px;color:#475569;}
+    .meta span:last-child::after{content:"";margin:0;}
+    .scoreline{display:grid;grid-template-columns:1.2fr .9fr 1.2fr;gap:12px;align-items:stretch;}
+    .panel-box{background:rgba(15,23,42,.9);border-radius:var(--radius);padding:12px 14px;border:1px solid var(--border);}
+    .label{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--text-soft);margin-bottom:4px;}
+    .team-name{font-size:18px;font-weight:600;}
+    .sub{font-size:13px;color:var(--text-soft);}
+    .score-box{text-align:center;}
+    .score{font-size:32px;font-weight:700;margin-bottom:6px;}
+    .status{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:999px;background:#020617;border:1px solid #0f172a;}
+    .status .dot{width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 4px rgba(34,197,94,.25);}
+    .grid{display:grid;grid-template-columns:2fr 1.4fr;gap:var(--space);}
+    .stack{display:flex;flex-direction:column;gap:var(--space);}
+    .panel{background:var(--panel);border-radius:var(--radius);padding:16px 18px;border:1px solid var(--border);}
+    .panel-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:8px;}
+    .panel-head h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft);}
+    .panel-head small{font-size:11px;color:var(--text-soft);}
+    .cards{display:flex;flex-direction:column;gap:10px;}
+    .card{padding:10px 12px;border-radius:10px;background:var(--panel-soft);border:1px solid #020617;}
+    .card strong{display:block;font-size:14px;margin-bottom:4px;}
+    .card p{font-size:13px;color:var(--text-soft);}
+    .event{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:flex-start;}
+    .minute{font-size:12px;font-weight:600;color:var(--text-soft);min-width:40px;text-align:center;}
+    table{width:100%;border-collapse:collapse;font-size:12px;}
+    th,td{padding:6px 4px;text-align:left;}
+    th{font-weight:500;color:var(--text-soft);border-bottom:1px solid #1e293b;}
+    td{border-bottom:1px solid #020617;}
+    td:first-child{font-weight:500;}
+    .footer{margin-top:12px;font-size:11px;color:var(--text-soft);display:flex;justify-content:space-between;gap:8px;}
+    .footer a{color:var(--text-soft);text-decoration:none;}
+    .footer a:hover{text-decoration:underline;}
+    @media(max-width:880px){
+      .widget{padding:14px;}
+      .hero{padding:14px;}
+      .scoreline{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr;}
     }
-    .wrap{width:min(100%,var(--max));margin:0 auto}.cms .wrap{width:100%;max-width:none}
-    .widget{display:grid;gap:14px}
-    .hero,.panel{background:linear-gradient(180deg,rgba(10,26,43,.97),rgba(8,20,33,.98));border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
-    .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:8px}
-    .match-title{font-size:clamp(28px,4.4vw,46px);line-height:1.04;font-weight:900;margin:0 0 8px}
-    .meta{display:flex;flex-wrap:wrap;gap:10px 16px;color:var(--muted);font-size:14px;margin-bottom:16px}
-    .scoreline{display:grid;grid-template-columns:1fr 220px 1fr;gap:12px;align-items:center}
-    .team-box,.card{background:rgba(255,255,255,.02);border:1px solid var(--line2);border-radius:16px;padding:14px}
-    .team-box{min-height:108px;display:flex;flex-direction:column;justify-content:center}
-    .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
-    .team-name{font-size:clamp(24px,3.4vw,36px);font-weight:900;line-height:1.04}
-    .sub{margin-top:8px;color:var(--muted);font-size:13px}
-    .score-box{text-align:center;padding:14px;border-radius:20px;border:1px solid rgba(74,133,194,.4);background:radial-gradient(circle at top,rgba(24,97,170,.25),rgba(7,18,30,.98))}
-    .score{font-size:clamp(44px,8vw,78px);font-weight:900;line-height:1;letter-spacing:.04em;margin:10px 0}
-    .status{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:800}
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--live);display:inline-block}
-    .grid{display:grid;grid-template-columns:1.25fr .95fr;gap:14px}
-    .stack{display:grid;gap:14px}.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
-    .panel h2{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.18em}.panel small{color:var(--soft);font-size:11px}
-    .cards{display:grid;gap:12px}.card strong{display:block;font-size:15px;margin-bottom:6px}.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
-    .event{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start}.minute{font-size:22px;font-weight:900;color:var(--text)}
-    .event .card{padding:12px 14px}
-    table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.02);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
-    th,td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(67,121,179,.14);font-size:14px}th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--soft)}tr:last-child td{border-bottom:0}
-    .manual-note{border:1px dashed rgba(132,163,198,.5);background:rgba(132,163,198,.06);border-radius:16px;padding:14px;color:var(--muted)}
-    .manual-note code{color:#d3ebff;background:rgba(255,255,255,.06);padding:2px 6px;border-radius:8px}
-    .news-slot{display:grid;gap:10px}.news-item{border:1px dashed rgba(67,121,179,.36);background:rgba(255,255,255,.02);border-radius:14px;padding:12px}.news-item strong{display:block;font-size:15px;margin-bottom:6px}.news-item p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
-    .footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--soft);font-size:12px}.footer a{color:#9ed9ff;text-decoration:none}.footer a:hover{text-decoration:underline}
-    @media (max-width:980px){.grid{grid-template-columns:1fr}.scoreline{grid-template-columns:1fr}.score-box{order:-1}.hero,.panel{padding:14px}body{padding:10px}}
   </style>
 </head>
 <body>
@@ -50,24 +70,38 @@
     <div class="widget">
       <section class="hero">
         <div class="eyebrow">Widget Mundial 2026</div>
-        <h1 class="match-title" id="matchTitle">Estados Unidos vs Paraguay</h1>
-        <div class="meta" id="metaLine"><span>Grupo D</span><span>Viernes 12 de junio de 2026</span><span>9:00 p. m. ET</span><span>Los Ángeles</span></div>
+        <h1 class="match-title" id="matchTitle">Partido del Mundial 2026</h1>
+        <div class="meta" id="metaLine">
+          <span>Grupo</span><span>Fecha</span><span>Hora</span><span>Sede</span>
+        </div>
         <div class="scoreline">
-          <div class="team-box"><div class="label">Local</div><div class="team-name" id="homeTeam">Estados Unidos</div><div class="sub" id="homeSub">Grupo D · Los Ángeles</div></div>
-          <div class="score-box"><div class="label">Marcador</div><div class="score" id="scoreBox">0 - 0</div><div class="status" id="statusBox"><span class="dot"></span><span>En juego</span></div></div>
-          <div class="team-box"><div class="label">Visitante</div><div class="team-name" id="awayTeam">Paraguay</div><div class="sub" id="awaySub">Grupo D · Los Ángeles</div></div>
+          <div class="panel-box">
+            <div class="label">Local</div>
+            <div class="team-name" id="homeTeam">Equipo local</div>
+            <div class="sub" id="homeSub">Grupo · Ciudad</div>
+          </div>
+          <div class="panel-box score-box">
+            <div class="label">Marcador</div>
+            <div class="score" id="scoreBox">– : –</div>
+            <div class="status" id="statusBox"><span class="dot"></span><span>Previo al partido</span></div>
+          </div>
+          <div class="panel-box">
+            <div class="label">Visitante</div>
+            <div class="team-name" id="awayTeam">Equipo visitante</div>
+            <div class="sub" id="awaySub">Grupo · Ciudad</div>
+          </div>
         </div>
       </section>
 
       <section class="grid">
         <div class="stack">
           <section class="panel">
-            <div class="panel-head"><h2>Resumen del juego</h2><small id="summaryStamp">Cobertura actual</small></div>
+            <div class="panel-head"><h2>Resumen del juego</h2><small id="summaryStamp">Previa del partido</small></div>
             <div class="cards" id="summaryList"></div>
           </section>
 
           <section class="panel">
-            <div class="panel-head"><h2>Cobertura en directo</h2><small id="liveStamp">Actualización automática</small></div>
+            <div class="panel-head"><h2>Cobertura en directo</h2><small id="liveStamp">En espera</small></div>
             <div class="cards" id="liveList"></div>
           </section>
 
@@ -79,16 +113,14 @@
 
         <div class="stack">
           <section class="panel">
-            <div class="panel-head"><h2>Clasificación</h2><small id="groupLabel">Grupo D</small></div>
+            <div class="panel-head"><h2>Clasificación</h2><small id="groupLabel">Grupo</small></div>
             <div id="tableWrap"></div>
-          </section>
-
           </section>
         </div>
       </section>
 
       <div class="footer">
-        <div>Seguimiento del partido</div>
+        <div id="footerNote">Cobertura del Mundial 2026</div>
         <div><a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">Abrir partido en FIFA</a></div>
       </div>
     </div>
@@ -96,36 +128,46 @@
 
   <script>
     const params=new URLSearchParams(location.search);
-    const matchUrl=params.get('match')||'https://www.fifa.com/es/match-centre/match/17/285023/289273/400021458';
+    const matchUrl=params.get('match');
     if((params.get('view')||'').toLowerCase()==='cms')document.body.classList.add('cms');
-    document.getElementById('sourceLink').href=matchUrl;
+    if(matchUrl)document.getElementById('sourceLink').href=matchUrl;
 
+    // Configuración manual por partido (inicialmente solo Catar vs Suiza)
     const matchConfigs={
-      '400021458':{
-        title:'Estados Unidos vs Paraguay',
-        home:'Estados Unidos',
-        away:'Paraguay',
-        group:'Grupo D',
-        dateLine:'Viernes 12 de junio de 2026',
-        timeLine:'9:00 p. m. ET',
-        city:'Los Ángeles',
+      '400021447':{
+        title:'Catar vs Suiza',
+        home:'Catar',
+        away:'Suiza',
+        group:'Grupo B',
+        dateLine:'Sábado 13 de junio de 2026',
+        timeLine:'3:00 p. m. ET',
+        city:'Área de la Bahía de San Francisco',
         summary:[
-          {title:'Estado del partido',text:'Cobertura del debut de Estados Unidos frente a Paraguay.'},
-          {title:'Marcador en vivo',text:'Estados Unidos 0 - 0 Paraguay.'}
+          {title:'Estado del partido',text:'Cobertura del debut de Catar y Suiza en el Grupo B.'},
+          {title:'Contexto',text:'Partido del Grupo B del Mundial 2026 en la Bahía de San Francisco.'}
         ],
         live:[
-          {minute:'PRE',title:'Seguimiento en vivo',text:'Cobertura en directo desde Los Ángeles.'}
+          {minute:'PRE',title:'Seguimiento en vivo',text:'Cobertura en directo desde la Bahía de San Francisco.'}
         ],
         players:[
-          {title:'Estados Unidos',text:'Christian Pulisic — Extremo; Weston McKennie — Mediocampista; Tim Weah — Atacante.'},
-          {title:'Paraguay',text:'Miguel Almirón — Extremo; Julio Enciso — Atacante; Gustavo Gómez — Defensor.'}
+          {title:'Catar',text:'Jugadores clave por definir.'},
+          {title:'Suiza',text:'Jugadores clave por definir.'}
         ],
-        standings:[['Estados Unidos',0,0,0,0,0],['Paraguay',0,0,0,0,0],['Turquía',0,0,0,0,0],['Irlanda',0,0,0,0,0]]
+        standings:[['Catar',0,0,0,0,0],['Suiza',0,0,0,0,0],['Equipo 3',0,0,0,0,0],['Equipo 4',0,0,0,0,0]]
       }
     };
 
-    const matchId=((matchUrl.match(/\/(\d+)(?:\?|$)/g)||[]).map(x=>x.replace(/\D/g,''))).pop()||'400021458';
-    const defaults=matchConfigs[matchId]||matchConfigs['400021458'];
+    const idFromUrl = matchUrl ? (matchUrl.match(/\/(\d+)(?:\?|$)/)||[])[1] : null;
+    const matchId = idFromUrl && matchConfigs[idFromUrl] ? idFromUrl : '400021447';
+    const cfg = matchConfigs[matchId];
+
+    matchTitle.textContent=cfg.title;
+    homeTeam.textContent=cfg.home;
+    awayTeam.textContent=cfg.away;
+    homeSub.textContent=`${cfg.group} · ${cfg.city}`;
+    awaySub.textContent=`${cfg.group} · ${cfg.city}`;
+    metaLine.innerHTML=`<span>${cfg.group}</span><span>${cfg.dateLine}</span><span>${cfg.timeLine}</span><span>${cfg.city}</span>`;
+    groupLabel.textContent=cfg.group;
 
     function renderCards(target,items){
       document.getElementById(target).innerHTML=items.map(i=>`<article class="card"><strong>${i.title}</strong><p>${i.text}</p></article>`).join('');
@@ -137,73 +179,16 @@
       tableWrap.innerHTML=`<table><thead><tr><th>Selección</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('')}</tbody></table>`;
     }
 
-    matchTitle.textContent=defaults.title;
-    homeTeam.textContent=defaults.home;
-    awayTeam.textContent=defaults.away;
-    homeSub.textContent=`${defaults.group} · ${defaults.city}`;
-    awaySub.textContent=`${defaults.group} · ${defaults.city}`;
-    metaLine.innerHTML=`<span>${defaults.group}</span><span>${defaults.dateLine}</span><span>${defaults.timeLine}</span><span>${defaults.city}</span>`;
-    groupLabel.textContent=defaults.group;
-    renderCards('summaryList',defaults.summary);
-    renderLive(defaults.live);
-    renderCards('playersList',defaults.players);
-    renderTable(defaults.standings);
+    renderCards('summaryList',cfg.summary);
+    renderLive(cfg.live);
+    renderCards('playersList',cfg.players);
+    renderTable(cfg.standings);
 
-    const espnMap={'400021458':'760417'};
-    const espnGameId=espnMap[matchId]||'';
-
-    async function fetchEspn(){
-      if(!espnGameId) throw new Error('Sin mapeo ESPN');
-      const proxy='https://r.jina.ai/http://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/summary?event='+espnGameId;
-      const res=await fetch(proxy,{cache:'no-store'});
-      if(!res.ok) throw new Error('Fallo al leer ESPN');
-      const txt=await res.text();
-      const jsonStart=txt.indexOf('{');
-      return JSON.parse(txt.slice(jsonStart));
-    }
-
-
-    const meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-    const dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-    function formatFechaES(dateStr){
-      const d=new Date(dateStr);
-      if(Number.isNaN(d.getTime())) return dateStr;
-      let hours=d.getHours();
-      const minutes=String(d.getMinutes()).padStart(2,'0');
-      const ampm=hours>=12?'p. m.':'a. m.';
-      hours=hours%12||12;
-      return `${dias[d.getDay()]}, ${d.getDate()} de ${meses[d.getMonth()]} a las ${hours}:${minutes} ${ampm} ET`;
-    }
-    function parseEspn(data){
-      const header=data.header||{};
-      const comp=(header.competitions&&header.competitions[0])||{};
-      const statusObj=comp.status||header.status||{};
-      const type=statusObj.type||{};
-      const comps=comp.competitors||[];
-      const home=comps.find(c=>c.homeAway==='home')||comps[0]||{};
-      const away=comps.find(c=>c.homeAway==='away')||comps[1]||{};
-      const hs=home.score ?? '0';
-      const as=away.score ?? '0';
-      const rawDetail=type.detail || type.shortDetail || 'En juego';
-      const detail=(comp.date?formatFechaES(comp.date):rawDetail);
-      const isLive=(type.state==='in'&&!type.completed) || /\d+'/.test(rawDetail);
-      scoreBox.textContent=`${hs} - ${as}`;
-      statusBox.innerHTML=`${isLive?'<span class="dot"></span>':''}<span>${type.completed?'Finalizado':(isLive?rawDetail:detail)}</span>`;
-      renderCards('summaryList',[
-        {title:'Estado del partido',text:`${type.completed?'Finalizado':(isLive?'En juego':'Actualizado')}. Detalle reportado: ${type.completed?'Finalizado':(isLive?rawDetail:detail)}.`},
-        {title:'Marcador en vivo',text:`${defaults.home} ${hs} - ${as} ${defaults.away}.`}
-      ]);
-      renderLive([{minute:(isLive?(type.shortDetail||rawDetail||'EN VIVO'):'PREVIO'),title:'Estado en vivo',text:`Marcador actual: ${defaults.home} ${hs} - ${as} ${defaults.away}.`}]);
-      summaryStamp.textContent='Cobertura actual';
-      liveStamp.textContent='Actualización automática';
-    }
-
-    async function refresh(){
-      try{const data=await fetchEspn();parseEspn(data);}catch(e){summaryStamp.textContent='Último dato visible';liveStamp.textContent='Sin nuevos eventos';}
-    }
-
-    refresh();
-    setInterval(refresh,30000);
+    // Marcador y estado quedan manuales para que no dependan de ninguna API
+    scoreBox.textContent='– : –';
+    statusBox.innerHTML='<span class="dot"></span><span>En juego</span>';
+    summaryStamp.textContent='Previa del partido';
+    liveStamp.textContent='Cobertura en directo';
   </script>
 </body>
 </html>
