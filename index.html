@@ -53,21 +53,16 @@ const sourceLink = document.getElementById('sourceLink');
 if(matchUrl) sourceLink.href = matchUrl;
 
 const matchConfigs = {
-  '400021458': {
-    title:'Estados Unidos vs Paraguay', home:'Estados Unidos', away:'Paraguay', group:'Grupo D',
-    dateLine:'Viernes 12 de junio de 2026', timeLine:'9:00 p. m. ET', city:'Los Ángeles',
-    summary:[
-      {title:'Estado del partido', text:'Cobertura del debut de Estados Unidos frente a Paraguay.'},
-      {title:'Marcador en vivo', text:'Estados Unidos 0 - 0 Paraguay.'}
-    ],
-    live:[{minute:'PRE', title:'Seguimiento en vivo', text:'Cobertura en directo desde Los Ángeles.'}],
-    players:[
-      {title:'Estados Unidos', text:'Christian Pulisic — Extremo; Weston McKennie — Mediocampista; Tim Weah — Atacante.'},
-      {title:'Paraguay', text:'Miguel Almirón — Extremo; Julio Enciso — Atacante; Gustavo Gómez — Defensor.'}
-    ],
-    standings:[['Estados Unidos',0,0,0,0,0],['Paraguay',0,0,0,0,0],['Turquía',0,0,0,0,0],['Irlanda',0,0,0,0,0]],
-    score:'0 - 0', status:'En juego', footer:'Cobertura del partido Estados Unidos vs Paraguay'
-  },
+  '400021458': score:'4 - 1',
+status:'Finalizado',
+summary:[
+  {title:'Estado del partido', text:'Estados Unidos cerró su debut con una victoria 4-1 sobre Paraguay en el Grupo D.'},
+  {title:'Marcador final', text:'Estados Unidos 4 - 1 Paraguay.'}
+],
+live:[
+  {minute:'FT', title:'Final del partido', text:'Estados Unidos derrotó 4-1 a Paraguay y sumó sus primeros tres puntos del torneo.'}
+],
+footer:'Resultado final: Estados Unidos 4 - 1 Paraguay'
   '400021447': {
     title:'Catar vs Suiza', home:'Catar', away:'Suiza', group:'Grupo B',
     dateLine:'Sábado 13 de junio de 2026', timeLine:'3:00 p. m. ET', city:'Área de la Bahía de San Francisco',
